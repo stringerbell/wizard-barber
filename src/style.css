@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gold: #d4a017;
+  --gold-light: #f0d060;
+  --purple: #6b3fa0;
+  --purple-dark: #3d1f6d;
+  --purple-light: #9b6dd7;
+  --wood: #8b5e3c;
+  --wood-dark: #5c3a1e;
+  --wood-light: #b8875a;
+  --parchment: #f4e4c1;
+  --red: #c0392b;
+  --green: #27ae60;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #1a0a2e;
+  color: #fff;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+h1, h2, h3, .fancy-text {
+  font-family: 'MedievalSharp', cursive;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+/* Title Screen */
+.title-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: radial-gradient(ellipse at center, #2d1b69 0%, #1a0a2e 70%);
+  text-align: center;
+}
+
+.title-screen h1 {
+  font-size: 4rem;
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(212, 160, 23, 0.5), 0 4px 8px rgba(0,0,0,0.5);
+  margin-bottom: 0.5rem;
+}
+
+.title-screen .subtitle {
+  font-size: 1.2rem;
+  color: var(--purple-light);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.title-screen .wizard-art {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.btn {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.4rem;
+  padding: 12px 40px;
+  border: 2px solid var(--gold);
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+  color: var(--gold);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, var(--purple), var(--purple-light));
+  box-shadow: 0 0 20px rgba(212, 160, 23, 0.3);
+  transform: scale(1.05);
+}
+
+.btn-small {
+  font-size: 1rem;
+  padding: 8px 20px;
+}
+
+/* Game Screen */
+.game-screen {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  background: linear-gradient(180deg, #2d1b69 0%, #1a0a2e 100%);
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 2px solid var(--gold);
+}
+
+.game-header .money {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+
+.game-header .day-info {
+  font-size: 0.9rem;
+  color: var(--purple-light);
+}
+
+.game-header .customers-left {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.game-main {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* Reference panel */
+.reference-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.reference-panel h3 {
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+.reference-canvas-wrap {
+  border: 3px solid var(--gold);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--parchment);
+  box-shadow: 0 0 15px rgba(212, 160, 23, 0.2);
+}
+
+/* Barber chair area */
+.barber-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.barber-canvas-wrap {
+  border: 3px solid var(--wood);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--parchment);
+  position: relative;
+  cursor: none;
+}
+
+.wizard-emotion {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  padding: 4px 12px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 20px;
+  transition: all 0.3s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Tool panel */
+.tool-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tool-panel h3 {
+  color: var(--gold);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.tool-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,0.05);
+  color: #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.85rem;
+}
+
+.tool-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.tool-btn.active {
+  border-color: var(--gold);
+  background: rgba(212, 160, 23, 0.15);
+  color: var(--gold);
+}
+
+.tool-btn.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tool-btn .tool-icon {
+  font-size: 1.3rem;
+}
+
+.tool-size-slider {
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* Bottom bar */
+.game-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 20px;
+  background: rgba(0,0,0,0.3);
+  border-top: 2px solid var(--wood);
+}
+
+/* Results overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+
+.result-card {
+  background: linear-gradient(135deg, #2d1b69, #1a0a2e);
+  border: 3px solid var(--gold);
+  border-radius: 16px;
+  padding: 30px 50px;
+  text-align: center;
+  max-width: 500px;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.result-card h2 {
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.result-card .wizard-reaction {
+  font-size: 4rem;
+  margin: 15px 0;
+}
+
+.result-card .score-text {
+  font-size: 1.3rem;
+  margin: 10px 0;
+}
+
+.result-card .tip-text {
+  font-size: 1.5rem;
+  color: var(--gold);
+  font-family: 'MedievalSharp', cursive;
+  margin: 10px 0;
+}
+
+.result-card .consequence-text {
+  font-size: 1rem;
+  color: var(--red);
+  margin: 10px 0;
+  font-style: italic;
+}
+
+.score-bar-wrap {
+  width: 100%;
+  height: 20px;
+  background: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.score-bar {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+/* Shop screen */
+.shop-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background: radial-gradient(ellipse at center, #2d1b69 0%, #1a0a2e 70%);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.shop-screen h1 {
+  color: var(--gold);
+  margin-bottom: 5px;
+}
+
+.shop-money {
+  color: var(--gold);
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.shop-item {
+  background: rgba(255,255,255,0.05);
+  border: 2px solid var(--purple);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.shop-item:hover {
+  border-color: var(--gold);
+  background: rgba(255,255,255,0.08);
+}
+
+.shop-item.owned {
+  border-color: var(--green);
+  opacity: 0.7;
+}
+
+.shop-item .item-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.shop-item .item-name {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.1rem;
+  color: var(--gold-light);
+}
+
+.shop-item .item-desc {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin: 5px 0;
+}
+
+.shop-item .item-price {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  color: var(--gold);
+}
+
+.shop-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+/* Day summary */
+.day-summary {
+  text-align: center;
+}
+
+.day-summary h2 {
+  color: var(--gold);
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.day-summary .stat-line {
+  font-size: 1.1rem;
+  margin: 6px 0;
+  color: #ccc;
+}
+
+.day-summary .stat-line span {
+  color: var(--gold);
+  font-family: 'MedievalSharp', cursive;
+}
+
+/* Particles */
+.particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 200;
+  animation: particleFade 1s ease-out forwards;
+}
+
+@keyframes particleFade {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-60px) scale(0.5); }
+}
+
+/* Steam animation for angry wizard */
+.steam-container {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.steam-puff {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(200, 200, 200, 0.6);
+  border-radius: 50%;
+  animation: steamRise 1.5s ease-out infinite;
+}
+
+@keyframes steamRise {
+  0% { opacity: 0.8; transform: translateY(0) scale(0.5); }
+  100% { opacity: 0; transform: translateY(-40px) scale(1.5); }
+}
+
+@keyframes timerShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* Custom cursor indicator */
+.cursor-indicator {
+  position: fixed;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+}
