@@ -476,3 +476,186 @@ h1, h2, h3, .fancy-text {
   z-index: 50;
   transform: translate(-50%, -50%);
 }
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+    overflow-x: hidden;
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .title-screen h1 {
+    font-size: 2.5rem;
+  }
+
+  .title-screen .wizard-art {
+    font-size: 4rem;
+  }
+
+  /* Game screen: switch to vertical flow */
+  .game-screen {
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .game-header {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .game-header .money {
+    font-size: 1.2rem;
+  }
+
+  .game-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 6px;
+    padding: 6px;
+    overflow: auto;
+  }
+
+  /* Reference panel: compact horizontal strip */
+  .reference-panel {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+  }
+
+  .reference-panel h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .reference-canvas-wrap {
+    flex-shrink: 0;
+  }
+
+  #reference-canvas {
+    width: 90px;
+    height: 130px;
+  }
+
+  .reference-panel #style-name,
+  .reference-panel #wizard-name,
+  .reference-panel #karma-display,
+  .reference-panel #curse-list {
+    margin-top: 0;
+  }
+
+  /* Barber area: scale canvas to fit viewport width */
+  .barber-area {
+    min-height: 0;
+  }
+
+  .barber-canvas-wrap {
+    max-width: 100%;
+  }
+
+  #barber-canvas {
+    width: min(100%, 400px);
+    height: auto;
+  }
+
+  .wizard-emotion {
+    font-size: 1rem;
+    padding: 2px 8px;
+  }
+
+  /* Tool panel: horizontal bottom bar */
+  .tool-panel {
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 8px;
+    gap: 6px;
+  }
+
+  .tool-panel h3 {
+    font-size: 0.85rem;
+  }
+
+  #tool-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tool-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    flex: 0 0 auto;
+  }
+
+  .tool-btn .tool-icon {
+    font-size: 1.1rem;
+  }
+
+  .tool-size-slider {
+    max-width: 200px;
+  }
+
+  #btn-done {
+    font-size: 1.1rem !important;
+    padding: 10px 20px !important;
+  }
+
+  /* Result overlay */
+  .result-card {
+    padding: 20px 24px;
+    max-width: 90vw;
+    margin: 10px;
+  }
+
+  .result-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .result-card .wizard-reaction {
+    font-size: 3rem;
+    margin: 10px 0;
+  }
+
+  .result-card .tip-text {
+    font-size: 1.2rem;
+  }
+
+  /* Shop screen */
+  .shop-screen {
+    padding: 12px;
+  }
+
+  .shop-screen h1 {
+    font-size: 1.5rem;
+  }
+
+  .shop-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+  }
+
+  .shop-item {
+    padding: 10px;
+  }
+
+  .shop-item .item-icon {
+    font-size: 2rem;
+  }
+
+  .shop-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
